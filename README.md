@@ -13,8 +13,8 @@ Data-Copilot connects data sources from different domains and diverse user taste
 ## 🔥Demo
 Since gpt3.5 has only a 4k input token limit, it currently can access to Chinese stocks, funds and some economic data.
 
-<img src="./assets/video.GIF" alt="Image" style="width: 900px">
-
+<img src="./assets/video1.GIF" alt="Image" style="width: 900px">
+<img src="./assets/video2.GIF" alt="Image" style="width: 900px">
 
 Support model and data sources:
 
