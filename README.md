@@ -15,7 +15,7 @@ Since gpt3.5 has only a 4k input token limit, it currently can access to Chinese
 
 <img src="./assets/video.GIF" alt="Image" style="width: 900px">
 
-
+<img src="./assets/video1.GIF" alt="Image" style="width: 900px">
 Support model and data sources:
 
 
