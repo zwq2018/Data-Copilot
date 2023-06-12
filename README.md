@@ -26,7 +26,6 @@ Support model and data sources:
 
 
 
-See our paper：🔥[Data-Copilot: Bridging Billions of Data and Humans with Autonomous Workflow, Wenqi Zhang, Yongliang Shen, Weiming Lu](https://arxiv.org/) for more detail
 
 <img src="./assets/fig1.png" alt="Image" style="width: 900px;">
 
