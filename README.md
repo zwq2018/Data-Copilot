@@ -1,14 +1,18 @@
 # Data-Copilot
 
 [![Open in Spaces](https://img.shields.io/badge/%F0%9F%A4%97-Open%20in%20Spaces-blue)](https://huggingface.co/spaces/zwq2018/Data-Copilot)
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2306.07209)
 
-Our paper will be announced in arxiv soon. The repository is under construction
+
 ## Overview
 Data-Copilot is a LLM-based system that help you address data-related tasks.  
 
 Data-Copilot connects data sources from different domains and diverse user tastes, with the ability to autonomously manage, process, analyze, predict, and visualize data.
 
 <img src="./assets/Word Art.png" alt="Image" style="width: 900px;">
+
+See our paper: [Data-Copilot: Bridging Billions of Data and Humans with Autonomous Workflow](https://arxiv.org/abs/2306.07209), Wenqi Zhang, Yongliang Shen, Weiming Lu, Yueting Zhuang
+
 
 ## 🔥Demo
 Since gpt3.5 has only a 4k input token limit, it currently can access to Chinese stocks, funds and some economic data.
@@ -137,8 +141,15 @@ A case for Check the inflow of northbound every trading date
 
 
 ## Citation
+
 If you find this work useful in your method, you can cite the paper as below:
 
+    @article{Data-Copilot,
+        title   = {Data-Copilot: Bridging Billions of Data and Humans with Autonomous Workflow},
+        author  = {Wenqi Zhang, Yongliang Shen, Weiming Lu, Yueting Zhuang},
+        journal = {arXiv preprint arXiv:2306.07209},
+        year    = {2023}
+    }
 
 ## Contact 
 If you have any questions, please contact us by email:
