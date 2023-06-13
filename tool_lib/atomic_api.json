@@ -1,0 +1,9 @@
+{
+    "pro.daily": {
+        "func_desc": null,
+        "example_input": "pro.daily(ts_code='000001.SZ', start_date='20180701', end_date='20180718')",
+        "example_output": "      ts_code trade_date  open  high   low  close  pre_close  change  pct_chg         vol       amount\n0   000001.SZ   20180718  8.75  8.85  8.69   8.70       8.72   -0.02    -0.23   525152.77   460697.377\n1   000001.SZ   20180717  8.74  8.75  8.66   8.72       8.73   -0.01    -0.11   375356.33   326396.994\n12  000001.SZ   20180702  9.05  9.05  8.55   8.61       9.09   -0.48    -5.28  1315520.13  1158545.868",
+        "api_name": "pro.daily()",
+        "desc": "获取股票每日的行情数据"
+    }
+}

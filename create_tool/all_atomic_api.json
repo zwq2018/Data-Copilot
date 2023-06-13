@@ -1,0 +1,151 @@
+{
+    "pro.fina_indicator": {
+        "func_desc": "财务指标",
+        "Column_name": {
+            "ts_code": "股票代码",
+            "end_date": "报告期",
+            "eps": "每股收益",
+            "current_ratio": "流动比率",
+            "quick_ratio": "速动比率",
+            "inv_turn": "存货周转率",
+            "netprofit_margin": "销售净利率",
+            "grossprofit_margin": "销售毛利率",
+            "roe": "净资产收益率",
+            "roa": "总资产净利率",
+            "roic": "投入资本回报率",
+            "debt_to_assets": "资产负债率",
+            "netprofit_yoy": "净利润同比增长率",
+            "dt_netprofit_yoy": "扣非净利润同比增长率"
+        },
+        "example_input": "pro.fina_indicator(ts_code = \"600000.SH\",start_date = \"20200104\",end_date = \"20220104\",fields=[\"ts_code\",\"end_date\",\"eps\",\"current_ratio\",\"quick_ratio\",\"inv_turn\",\"netprofit_margin\",\"grossprofit_margin\",\"roe\",\"roa\",\"roic\",\"debt_to_assets\",\"netprofit_yoy\",\"dt_netprofit_yoy\"])",
+        "output_first_and_last_row": "600000.SH 20211231 1.62 None None None 28.1524 None 8.1032 None None 91.6648 -9.1247 -9.26\n600000.SH 20200331 0.56 None None None 31.6289 None 3.0746 None None 92.0170  5.4803  5.23"
+    },
+    "pro.stock_company": {
+        "func_desc": "获取上市公司基本信息如公司业务描述,员工人数等基本信息",
+        "Column_name": {
+            "ts_code": "股票代码",
+            "exchange": "交易所代码",
+            "chairman": "法人代表",
+            "manager": "总经理",
+            "secretary": "董秘",
+            "reg_capital": "注册资本",
+            "setup_date": "注册日期",
+            "province": "所在省份",
+            "city": "所在城市",
+            "introduction": "公司介绍",
+            "website": "公司主页",
+            "email": "电子邮件",
+            "office": "办公室地址",
+            "business_scope": "员工人数",
+            "employees": "主要业务及产品",
+            "main_business": "经营范围"
+        },
+        "example_input": "pro.stock_company(ts_code = '600230.SH', fields=[\"ts_code\",\"exchange\",\"chairman\", \"manager\",\"secretary\", \"reg_capital\",\"setup_date\", \"province\",\"city\",\"introduction\",\"website\", \"email\",\"office\",\"employees\",\"main_business\",\"business_scope\"])",
+        "output_first_and_last_row": " 600230.SH SSE 谢华生 杜森肴 刘晓婧 41835.5802 19980924 河北 沧州市 公司是由中国化工集团控股、沧州市政府参股，以化肥、TDI为主导产品的大型综合性化工企业 www.czdh.chemchina.com caiwu@czdh.com.cn 河北省沧州市运河区永济东路20号 货物进出口；(以下限分支机构经营)化工机械、电气、仪表的技术服务；水污染治理；尿素销售；工业循... 1150 主要产品:尿素,TDI."
+    },
+    "pro.daily_basic": {
+        "func_desc": "获取股票每日基本指标例如换手率,市盈率市净率股息率等",
+        "Column_name": {
+            "ts_code": "股票代码",
+            "trade_date": "交易日期",
+            "turnover_rate": "换手率(总股本)",
+            "turnover_rate_f": "换手率(自由流通股本)",
+            "volume_ratio": "量比",
+            "pe_ttm": "市盈率(动态)",
+            "pb": "市净率",
+            "ps_ttm": "市销率(动态)",
+            "dv_ttm": "股息率(动态)",
+            "total_share": "总股本",
+            "float_share": "流通股本",
+            "free_share": "自由流通股本",
+            "total_mv": "总市值",
+            "circ_mv": "流通市值"
+        },
+        "example_input": "pro.daily_basic(ts_code = \"600230.SH\",start_date = \"20180726\",end_date = \"20200726\", fields=[\"ts_code\", \"trade_date\",\"turnover_rate\",\"turnover_rate_f\",\"volume_ratio\",\"pe_ttm\",\"pb\",\"ps_ttm\",\"dv_ttm\",\"total_share\",\"float_share\",\"free_share\",\"total_mv\",\"circ_mv\"])",
+        "output_first_and_last_row": "600230.SH 20200724 2.2876 4.2557 0.86    NaN 1.0717 2.1456    NaN 41186.3502 41186.3502 22139.6078  375619.5138  375619.5138\n600230.SH 20180726 2.4584 4.5734 0.72 8.8805 3.7203 2.4699 1.3188 41186.3502 41186.3502 22139.6078 1115326.3634 1115326.3634"
+    },
+    "pro.stk_factor": {
+        "func_desc": "获取股票的每日的技术指标数据",
+        "Column_name": "{'ts_code': '股票代码', 'trade_date': '交易日期', 'close': '收盘价', 'macd_dif': 'MACD_DIF', 'macd_dea': 'MACD_DEA', 'macd': 'MACD', 'kdj_k': 'KDJ_K', 'kdj_d': 'KDJ_D', 'kdj_j': 'KDJ_J', 'rsi_6': 'RSI_6', 'rsi_12': 'RSI_12', 'rsi_24': 'RSI_24', 'boll_upper': 'BOLL_UPPER', 'boll_mid': 'BOLL_MID', 'boll_lower': 'BOLL_LOWER', 'cci': 'CCI'}",
+        "example_input": "pro.stk_factor(ts_code=stock_code,start_date= start_date,end_date= end_date,fields=[\"ts_code\",\"trade_date\",\"close\",\"macd_dif\",\"macd_dea\",\"macd\",\"kdj_k\",\"kdj_d\",\"kdj_j\",\"rsi_6\",\"rsi_12\",\"rsi_24\",\"boll_upper\",\"boll_mid\",\"boll_lower\",\"cci\"])",
+        "output_first_and_last_row": "600000.SH 20230519 7.54  0.074  0.104 -0.060 21.127 33.030 -2.678 38.182 47.410 51.933 7.944 7.652 7.36 -71.419\n600000.SH 20220520 8.04 -0.013 -0.026  0.026 72.966 64.718 89.460 60.530 54.424 50.138 7.713 7.531 7.35  76.207"
+    },
+    "pro.moneyflow_hsgt": {
+        "func_desc": "获取沪深港通资金每日的资金流向数据",
+        "Column_name": "{'trade_date': '交易日期', 'ggt_ss': '港股通（上海）', 'ggt_sz': '港股通（深圳）', 'hgt': '沪股通（百万元）', 'sgt': '深股通（百万元）', 'north_money': '北向资金（百万元）', 'south_money': '南向资金（百万元）'}",
+        "example_input": "pro.moneyflow_hsgt(start_date=\"20220101\", end_date=\"20230101\", fields=[\"trade_date\",\"ggt_ss\",\"ggt_sz\",\"hgt\",\"sgt\",\"north_money\",\"south_money\"])",
+        "output_first_and_last_row": "20221230 504.31  1509.60 1568.20 -1475.09  93.11  2013.91\n20220104  -1.57 -1573.01 -940.71  1400.87 460.16 -1574.58"
+    },
+    "pro.index_member": {
+        "func_desc": "获取申万行业指数的成分股信息",
+        "Column_name": "{'index_code': '指数代码', 'index_name': '指数名称', 'con_code': '成分股代码', 'con_name': '成分股名称', 'in_date': '纳入日期', 'out_date': '剔除日期', 'is_new': '是否最新'}",
+        "example_input": "pro.index_member(index_code= \"850531.SI \", fields=[\"index_code\",\"con_code\",\"in_date\",\"out_date\",\"is_new\",\"index_name\",\"con_name\"])",
+        "output_first_and_last_row": "850531.SI 黄金(申万) 000506.SZ 中润资源 20150701 20160630 N\n850531.SI 黄金(申万) 601899.SH 紫金矿业 20140221 20211210 N"
+    },
+    "pro.index_classify": {
+        "func_desc": "获取申万一级(L1),二级(L2),三级(L3)的行业信息",
+        "Column_name": "{'index_code': '行业代码', 'industry_name': '行业名称', 'level': '行业级别'}",
+        "example_input": "pro.index_classify(level='L1', src='SW2021',filter=[\"index_code\",\"industry_name\",\"level\"])",
+        "output_first_and_last_row": "801010.SI 农林牧渔 L1\n801980.SI 美容护理 L1"
+    },
+    "pro.stock_basic": {
+        "func_desc": "按照股票名称或者股票代码查询股票相关信息",
+        "Column_name": "{'ts_code': '股票代码', 'name': '股票名称', 'area': '地域', 'industry': '所属行业', 'market': '市场类型', 'list_date': '上市日期'}",
+        "example_input": "pro.stock_basic(ts_code=\"\", name=\"贵州茅台\", fields = [\"ts_code\",\"name\",\"area\",\"industry\",\"market\",\"list_date\"])",
+        "output_first_and_last_row": "600519.SH    贵州茅台      贵州       白酒   主板  20010827"
+    },
+    "pro.adj_factor": {
+        "func_desc": "获取股票每日的复权因子",
+        "Column_name": "{'ts_code': '股票代码', 'trade_date': '交易日期', 'adj_factor': '复权因子'}",
+        "example_input": "pro.adj_factor(ts_code='000001.SZ',start_date='20180718',end_date='20190718', fields=[\"ts_code\",\"trade_date\",\"adj_factor\"])",
+        "output_first_and_last_row": "000001.SZ 20190718 109.169\n000001.SZ 20180718 108.031"
+    },
+    "pro.daily": {
+        "func_desc": "获取股票每日的行情数据",
+        "Column_name": "{'ts_code': '股票代码', 'trade_date': '交易日期', 'open': '开盘价', 'high': '最高价', 'low': '最低价', 'close': '收盘价', 'pre_close': '昨收价', 'change': '涨跌额', 'pct_chg': '涨跌幅%', 'vol': '成交量', 'amount': '成交额'}",
+        "example_input": "pro.daily(ts_code='000001.SZ', start_date='20180701', end_date='20180718')",
+        "output_first_and_last_row": "000001.SZ 20180718 8.75 8.85 8.69 8.70 8.72 -0.02 -0.23  525152.77  460697.377\n000001.SZ 20180702 9.05 9.05 8.55 8.61 9.09 -0.48 -5.28 1315520.13 1158545.868"
+    },
+    "pro.weekly": {
+        "func_desc": "获取股票每周的行情数据",
+        "Column_name": "{'ts_code': '股票代码', 'trade_date': '交易日期', 'close': '周收盘价', 'open': '周开盘价', 'high': '周最高价', 'low': '周最低价', 'pre_close': '上一周收盘价', 'change': '周涨跌额', 'pct_chg': '周涨跌幅%', 'vol': '周成交量', 'amount': '周成交额'}",
+        "example_input": "pro.weekly(ts_code='000001.SZ', start_date='20180101', end_date='20181101')",
+        "output_first_and_last_row": "000001.SZ 20181026 11.18 10.81 11.46 10.71 10.76 0.42 0.039 906250014.0 1.002282e+10\n000001.SZ 20180105 13.30 13.35 13.93 13.13 13.30 0.00 0.000 810891313.0 1.092060e+10"
+    },
+    "pro.monthly": {
+        "func_desc": "获取股票每月的行情数据",
+        "Column_name": "{'ts_code': '股票代码', 'trade_date': '交易日期', 'close': '月收盘价', 'open': '月开盘价', 'high': '月最高价', 'low': '月最低价', 'pre_close': '上一月收盘价', 'change': '月涨跌额', 'pct_chg': '月涨跌幅%', 'vol': '月成交量', 'amount': '月成交额'}",
+        "example_input": "pro.monthly(ts_code='000001.SZ', start_date='20180101', end_date='20181101')",
+        "output_first_and_last_row": "000001.SZ 20181031 10.91 10.70 11.46  9.70 11.05 -0.14 -0.0127 2780155709.0 2.960878e+10\n000001.SZ 20180131 14.05 13.35 15.13 12.86 13.30  0.75  0.0564 4614537646.0 6.454870e+10"
+    },
+    "pro.index_daily": {
+        "func_desc": "获取指数每日的行情数据",
+        "Column_name": "{'ts_code': '指数代码', 'trade_date': '交易日期', 'close': '收盘点位', 'open': '开盘点位', 'high': '最高点位', 'low': '最低点位', 'pre_close': '昨收盘点位', 'change': '涨跌点', 'pct_chg': '涨跌幅%', 'vol': '成交量', 'amount': '成交额'}",
+        "example_input": "pro.index_daily(ts_code='399300.SZ', start_date='20180101', end_date='20191010')",
+        "output_first_and_last_row": "399300.SZ 20191010 3874.6391 3838.4865 3877.1420 3829.4328 3843.2392 31.3999 0.8170  79222694.0 127474042.8\n399300.SZ 20180102 4087.4012 4045.2086 4087.7789 4045.2086 4030.8549 56.5463 1.4028 146935435.0 178402032.8"
+    },
+    "pro.index_weekly": {
+        "func_desc": "获取指数每周的行情数据",
+        "Column_name": "{'ts_code': '指数代码', 'trade_date': '交易日期', 'close': '周收盘点位', 'open': '周开盘点位', 'high': '周最高点位', 'low': '周最低点位', 'pre_close': '上周收盘点位', 'change': '周涨跌点', 'pct_chg': '周涨跌幅%', 'vol': '周成交量', 'amount': '周成交额'}",
+        "example_input": "pro.index_weekly(ts_code='399300.SZ', start_date='20180101', end_date='20191010')",
+        "output_first_and_last_row": "399300.SZ 20190930 3814.528 3842.074 3857.231 3813.549 3852.6534 -38.1254 -0.0099 6.593131e+09 1.004873e+11\n399300.SZ 20180105 4138.750 4045.208 4151.281 4045.208 4030.8540 107.8960  0.0268 5.823413e+10 7.438588e+11"
+    },
+    "pro.index_monthly": {
+        "func_desc": "获取指数每月的行情数据",
+        "Column_name": "{'ts_code': '指数代码', 'trade_date': '交易日期', 'close': '月收盘点位', 'open': '月开盘点位', 'high': '月最高点位', 'low': '月最低点位', 'pre_close': '上月收盘点位', 'change': '月涨跌点', 'pct_chg': '月涨跌幅%', 'vol': '月成交量', 'amount': '月成交额'}",
+        "example_input": "pro.index_monthly(ts_code='399300.SZ', start_date='20180101', end_date='20191010')",
+        "output_first_and_last_row": "399300.SZ 20190930 3814.528 3803.689 3985.239 3799.817 3799.586  14.9419 0.0039 2.167131e+11 3.151053e+12\n399300.SZ 20180131 4275.898 4045.208 4403.337 4045.208 4030.854 245.0440 0.0608 3.651823e+11 4.793171e+12"
+    },
+    "pro.index_basic": {
+        "func_desc": "获取指数基本信息",
+        "Column_name": "{'ts_code': '指数代码', 'name': '指数名称'}",
+        "example_input": "pro.index_basic(name = '沪深300', fields=['ts_code','name'])",
+        "output_first_and_last_row": "000300.SH 沪深300\n399300.SZ 沪深300"
+    },
+    "pro.index_weight": {
+        "func_desc": "获取大盘指数的成分股和成分股的权重",
+        "Column_name": "{'index_code': '指数代码', 'con_code': '成分股代码', 'trade_date': '交易日期', 'weight': '成分股权重'}",
+        "example_input": "pro.index_weight(index_code='399300.SZ',start_date='20210101',end_date='20220101', fields=['index_code','con_code','trade_date','weight'])",
+        "output_first_and_last_row": "399300.SZ 688012.SH 20211231 0.1410\n399300.SZ 002624.SZ 20210104 0.1767"
+    }
+}
