@@ -14,7 +14,7 @@ Data-Copilot connects data sources from different domains and diverse user taste
 See our paper: [Data-Copilot: Bridging Billions of Data and Humans with Autonomous Workflow](https://arxiv.org/abs/2306.07209), Wenqi Zhang, Yongliang Shen, Weiming Lu, Yueting Zhuang
 
 
-## 🔥Demo
+## 🔥Demo  [video](https://zhuanlan.zhihu.com/p/636906119)
 Since gpt3.5 has only a 4k input token limit, it currently can access to Chinese stocks, funds and some economic data.
 
 **The Data-Copilot can query and predict data autonomously**:
