@@ -19,7 +19,7 @@ Since gpt3.5 has only a 4k input token limit, it currently can access to Chinese
 
 **The Data-Copilot can query and predict data autonomously**:
 
-<img src="./assets/demo1.png" alt="Image" style="width: 900px;">
+<img src="./demo1.png" alt="Image" style="width: 900px;">
 
 
 
