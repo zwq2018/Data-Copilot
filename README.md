@@ -142,15 +142,14 @@ A case for Check the inflow of northbound every trading date
 ## Citation
 
 If you find this work useful in your method, you can cite the paper as below:
-
-'''
- @article{zhang2023data,
+```
+@article{zhang2023data,
   title={Data-Copilot: Bridging Billions of Data and Humans with Autonomous Workflow},
   author={Zhang, Wenqi and Shen, Yongliang and Lu, Weiming and Zhuang, Yueting},
   journal={arXiv preprint arXiv:2306.07209},
   year={2023}
 }
-'''
+```
 ## Contact 
 If you have any questions, please contact us by email:
 zhangwenqi@zju.edu.cn
