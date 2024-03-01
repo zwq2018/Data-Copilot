@@ -3,7 +3,7 @@
 [![Open in Spaces](https://img.shields.io/badge/%F0%9F%A4%97-Open%20in%20Spaces-blue)](https://huggingface.co/spaces/zwq2018/Data-Copilot)
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2306.07209)
 [![zhihu](https://img.shields.io/badge/知乎-Video-0F88EB.svg)](https://zhuanlan.zhihu.com/p/636906119)
-[![Media](https://www.jiqizhixin.com/articles/2023-06-26-2)](https://www.jiqizhixin.com/articles/2023-06-26-2)
+[![Media](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSyncedTech&psig=AOvVaw0O-iYadltWz7PIgH7zaKNp&ust=1709350925458000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCFqMqS0oQDFQAAAAAdAAAAABAD)](https://www.jiqizhixin.com/articles/2023-06-26-2)
 
 ## Overview
 Data-Copilot is a LLM-based system that help you address data-related tasks.  
