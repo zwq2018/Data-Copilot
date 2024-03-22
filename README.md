@@ -35,6 +35,11 @@ Support model and data sources:
 | Azure-GPT3.5  | &#x2713;  | &#x2713; | &#x2713;      |        &#x2713;   |
 
 
+Other models you can experiment with:
+- Qwen-72b-Chat
+- GLM-3-Turbo
+- ChatGLM3-6b
+- ChatGLM2-6b
 
 
 <img src="./assets/fig1.png" alt="Image" style="width: 900px;">
@@ -63,6 +68,7 @@ The organization of the whole project is as follows:
 |   |-- Atomic_api_json.py
 |   `-- all_atomic_api.json
 |-- lab_gpt4_call.py
+|-- lab_llms_call.py
 |-- main.py
 |-- output
 |-- prompt_lib
@@ -157,3 +163,6 @@ zhangwenqi@zju.edu.cn
 
 - [ChatGPT](https://platform.openai.com/)
 - [Tushare](https://tushare.pro/)
+- [Qwen](https://bailian.console.aliyun.com/)
+- [GLM](https://open.bigmodel.cn/)
+
