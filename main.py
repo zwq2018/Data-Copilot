@@ -7,6 +7,8 @@ import json
 from matplotlib.ticker import MaxNLocator
 import matplotlib.font_manager as fm
 from lab_gpt4_call import send_chat_request,send_chat_request_Azure,send_official_call
+from lab_llms_call import send_chat_request_qwen,send_chat_request_glm,send_chat_request_chatglm3_6b,send_chat_request_chatglm_6b
+# from lab_llm_local_call import send_chat_request_internlm_chat
 #import ast
 import re
 from tool import *
@@ -136,10 +138,9 @@ def run(instruction, add_to_queue=None, send_chat_request_Azure = send_official_
     # sleep_time = check_RPM(run_time, current_time)
     # if sleep_time > 0:
     #     time.sleep(sleep_time)
-    response = send_chat_request_Azure(prompt_intent_detection, openai_key=openai_key, api_base=api_base, engine=engine)
-
-
-
+    
+    # response = send_chat_request("qwen-chat-72b",prompt_intent_detection)
+    response = send_chat_request("gpt",prompt_intent_detection, openai_key=openai_key, api_base=api_base, engine=engine)
 
     new_instruction = response
     print('new_instruction:', new_instruction)
@@ -164,8 +165,9 @@ def run(instruction, add_to_queue=None, send_chat_request_Azure = send_official_
     # sleep_time = check_RPM(run_time, current_time)
     # if sleep_time > 0:
     #     time.sleep(sleep_time)
-
-    response = send_chat_request_Azure(prompt_task, openai_key=openai_key,api_base=api_base,engine=engine)
+    
+    # response = send_chat_request("qwen-chat-72b",prompt_task)
+    response = send_chat_request("gpt", prompt_task, openai_key=openai_key,api_base=api_base,engine=engine)
 
     task_select = response
     pattern = r"(task\d+=)(\{[^}]*\})"
@@ -208,13 +210,17 @@ def run(instruction, add_to_queue=None, send_chat_request_Azure = send_official_
     # sleep_time = check_RPM(run_time, current_time)
     # if sleep_time > 0:
     #     time.sleep(sleep_time)
-
-    response = send_chat_request_Azure(prompt_flat, openai_key=openai_key,api_base=api_base, engine=engine)
+    
+    # response = send_chat_request("qwen-chat-72b",prompt_flat)
+    response = send_chat_request("gpt", prompt_flat, openai_key=openai_key,api_base=api_base, engine=engine)
 
     #response = "Function Call:step1={\n \"arg1\": [\"五粮液\"],\n \"function1\": \"get_stock_code\",\n \"output1\": \"result1\",\n \"arg2\": [\"泸州老窖\"],\n \"function2\": \"get_stock_code\",\n \"output2\": \"result2\"\n},step2={\n \"arg1\": [\"result1\",\"20190101\",\"20220630\",\"daily\"],\n \"function1\": \"get_stock_prices_data\",\n \"output1\": \"result3\",\n \"arg2\": [\"result2\",\"20190101\",\"20220630\",\"daily\"],\n \"function2\": \"get_stock_prices_data\",\n \"output2\": \"result4\"\n},step3={\n \"arg1\": [\"result3\",\"Cumulative_Earnings_Rate\"],\n \"function1\": \"calculate_stock_index\",\n \"output1\": \"result5\",\n \"arg2\": [\"result4\",\"Cumulative_Earnings_Rate\"],\n \"function2\": \"calculate_stock_index\",\n \"output2\": \"result6\"\n}, ###Output:{\n \"五粮液在2019年1月1日到2022年06月30的每日收盘价格时序表格\": \"result5\",\n \"泸州老窖在2019年1月1日到2022年06月30的每日收盘价格时序表格\": \"result6\"\n}"
+    
     call_steps, _ = response.split('###')
     pattern = r"(step\d+=)(\{[^}]*\})"
     matches = re.findall(pattern, call_steps)
+    # pattern = r"(step\d+=)(\{[^}]*\})"
+    # matches = re.findall(pattern, response)
     result_buffer = {}                # The stored format is as follows: {'result1': (000001.SH, 'Stock code of China Ping An'), 'result2': (df2, 'Stock data of China Ping An from January to June 2021')}.
     output_buffer = []                # Store the variable names [result5, result6] that will be passed as the final output to the next task.
     # print(task_output)
@@ -287,7 +293,8 @@ def run(instruction, add_to_queue=None, send_chat_request_Azure = send_official_
     # if sleep_time > 0:
     #     time.sleep(sleep_time)
 
-    response = send_chat_request_Azure(prompt_flat, openai_key=openai_key, api_base=api_base, engine=engine)
+    # response = send_chat_request("qwen-chat-72b", prompt_flat)
+    response = send_chat_request("gpt", prompt_flat, openai_key=openai_key, api_base=api_base, engine=engine)
     call_steps, _ = response.split('###')
     pattern = r"(step\d+=)(\{[^}]*\})"
     matches = re.findall(pattern, call_steps)
@@ -330,7 +337,8 @@ def run(instruction, add_to_queue=None, send_chat_request_Azure = send_official_
                     "示例1:###我用将您的问题拆分成两个任务,首先第一个任务[stock_task],我依次获取五粮液和贵州茅台从2013年5月20日到2023年5月20日的净资产回报率roe的时序数据. \n然后第二个任务[visualization_task],我用折线图绘制五粮液和贵州茅台从2013年5月20日到2023年5月20日的净资产回报率,并计算它们的平均值和中位数. \n\n在第一个任务中我分别使用了2个工具函数\{get_stock_code\},\{get_Financial_data_from_time_range\}获取到两只股票的roe数据,在第二个任务里我们使用折线图\{plot_stock_data\}工具函数来绘制他们的roe十年走势,最后并计算了两只股票十年ROE的中位数\{output_median_col\}和均值\{output_mean_col\}.\n\n最后贵州茅台的ROE的均值和中位数是\{\},{},五粮液的ROE的均值和中位数是\{\},\{\}###" + \
                     "示例2:###我用将您的问题拆分成两个任务,首先第一个任务[stock_task],我依次获取20230101到20230520这段时间北向资金每日净流入和每日累计流入时序数据,第二个任务是[visualization_task],因此我在同一张图里同时绘制北向资金20230101到20230520的每日净流入柱状图和每日累计流入的折线图 \n\n为了完成第一个任务中我分别使用了2个工具函数\{get_north_south_money\},\{calculate_stock_index\}分别获取到北上资金的每日净流入量和每日的累计净流入量,第二个任务里我们使用折线图\{plot_stock_data\}绘制来两个指标的变化走势.\n\n最后我们给您提供了包含两个指标的折线图和数据表格." + \
                     "示例3:###我用将您的问题拆分成两个任务,首先第一个任务[economic_task],我爬取了上市公司贵州茅台和其主营业务介绍信息. \n然后第二个任务[visualization_task],我用表格打印贵州茅台及其相关信息. \n\n在第一个任务中我分别使用了1个工具函数\{get_company_info\} 获取到贵州茅台的公司信息,在第二个任务里我们使用折线图\{print_save_table\}工具函数来输出表格.\n"
-    output_result = send_chat_request_Azure(output_prompt + str_out + '###', openai_key=openai_key, api_base=api_base,engine=engine)
+    # output_result = send_chat_request("qwen-chat-72b", output_prompt + str_out + '###')
+    output_result = send_chat_request("gpt", output_prompt + str_out + '###', openai_key=openai_key, api_base=api_base,engine=engine)
     print(output_result)
     buf = BytesIO()
     plt.savefig(buf, format='png')
@@ -365,19 +373,46 @@ def gradio_interface(query, openai_key, openai_key_azure, api_base,engine):
     yield  finally_text, img, output, df
     # Return the final result.
 
+def send_chat_request(model, prompt, send_chat_request_Azure = send_official_call, openai_key = '', api_base='', engine=''):
+    '''
+    Send request to LLMs(gpt, qwen-chat-72b, glm-3-turbo...)
+    :param model: the name of llm
+    :param prompt: prompt
+    :param send_chat_request_Azure(for gpt call)
+    :param openai_key(for gpt call)
+    :param api_base(for gpt call)
+    :param engine(for gpt call)
+    :return response: the response of llm
+    '''
+    if model=="gpt":
+        response = send_chat_request_Azure(prompt, openai_key=openai_key, api_base=api_base, engine=engine)
+    elif model=="qwen-chat-72b":
+        response = send_chat_request_qwen(prompt)# please set your api_key in lab_llms_call.py 
+    elif model=="glm-3-turbo":
+        response = send_chat_request_glm(prompt)# please set your api_key in lab_llms_call.py 
+    elif model =="chatglm3-6b":
+        response = send_chat_request_chatglm3_6b(prompt)# please set your api_key in lab_llms_call.py 
+    elif model=="chatglm2-6b":
+        response =  send_chat_request_chatglm_6b(prompt)# please set your api_key in lab_llms_call.py 
+    # If you want to call the llm from local, you can try the following: internlm-chat-7b
+    # elif model=="internlm-chat-7b":
+    #     response = send_chat_request_internlm_chat(prompt)  
+    return response
+
+        
 
 
-instruction = '预测未来中国4个季度的GDP增长率'
+
+instruction = '我想看看中国软件的2019年1月12日到2019年02月12日的收盘价的走势图'
 
 if __name__ == '__main__':
-
     # 初始化pro接口
-    #openai_call = send_chat_request_Azure #
+    # openai_call = send_chat_request_Azure #
+    
+    # if using gpt, please set the following parameters
     openai_call = send_official_call #
     openai_key = os.getenv("OPENAI_KEY")
-
-
-
+    
     output, image, df , output_result = run(instruction, send_chat_request_Azure = openai_call, openai_key=openai_key, api_base='', engine='')
     print(output_result)
     plt.show()
