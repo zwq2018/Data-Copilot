@@ -26,7 +26,7 @@ def send_chat_request_qwen(query):
             response.code, response.message
         ))
         
-dashscope.api_key='<your api key>'
+
 def send_chat_request_chatglm3_6b(query):
     '''
     You can generate API keys in https://bailian.console.aliyun.com/
@@ -49,7 +49,7 @@ def send_chat_request_chatglm3_6b(query):
             response.code, response.message
         ))
         
-dashscope.api_key='<your api key>'
+
 def send_chat_request_chatglm_6b(query):
     '''
     You can generate API keys in https://bailian.console.aliyun.com/
