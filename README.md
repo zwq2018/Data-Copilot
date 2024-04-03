@@ -31,15 +31,9 @@ Support model and data sources:
 
 |           | CHN Stock |  CHN Fund   |CHN Economic data | CHN Financial data |
 |:-------------:|:---------:|:--------:|:---------------:|:------------------------:|
-| Openai-GPT3.5 | &#x2713;  | &#x2713; | &#x2713;      |        &#x2713;                 |
+| Openai-GPT3.5 | &#x2713;  | &#x2713; | &#x2713;      |        &#x2713;   |
 | Azure-GPT3.5  | &#x2713;  | &#x2713; | &#x2713;      |        &#x2713;   |
-
-
-Other models you can experiment with:
-- Qwen-72b-Chat
-- GLM-3-Turbo
-- ChatGLM3-6b
-- ChatGLM2-6b
+| Qwen-72b-Chat | &#x2713;  | &#x2713; | &#x2713;      |        &#x2713;   |
 
 
 <img src="./assets/fig1.png" alt="Image" style="width: 900px;">
@@ -106,11 +100,23 @@ Then run the following command:
  ```bash
 python main.py
 ```
-Remember to fill in the key of Openai and Tushare token before running the code
-In `main.py` for Openai-key
-```
-openai_key = os.getenv("OPENAI_KEY")
-```
+You can select the LLM in main.py by setting:
+  ```
+  model='<the model you choose>'
+  ```
+Remember to fill in the key of the LLM you chose:
+- For GPT, fill in the key of Openai in `main.py`
+  ```
+  openai_key = os.getenv("OPENAI_KEY")
+  ```
+
+- For Qwen-72b-Chat, fill in the key in `lab_llms_call.py`
+  ```
+  dashscope.api_key='<your api key>'
+  ```
+
+Also, remember to fill in the Tushare token before running the code:
+
 In `tool.py` for Tushare token
 ```angular2html
 tushare_token = os.getenv('TUSHARE_TOKEN')
@@ -164,5 +170,4 @@ zhangwenqi@zju.edu.cn
 - [ChatGPT](https://platform.openai.com/)
 - [Tushare](https://tushare.pro/)
 - [Qwen](https://bailian.console.aliyun.com/)
-- [GLM](https://open.bigmodel.cn/)
 
