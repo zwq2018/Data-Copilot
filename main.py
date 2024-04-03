@@ -406,9 +406,6 @@ def send_chat_request(model, prompt, send_chat_request_Azure = send_official_cal
 
 
 instruction = '我想看看中国软件的2019年1月12日到2019年02月12日的收盘价的走势图'
-# '中国过去十年的cpi走势是什么'
-# '我想比较下工商银行和贵州茅台近十年的净资产回报率'
-# '基金经理周海栋名下的所有基金今年的收益率情况'
 if __name__ == '__main__':
     # if using gpt, please set the following parameters
     openai_call = send_official_call #
