@@ -215,10 +215,13 @@ def run(model, instruction, add_to_queue=None, send_chat_request_Azure = send_of
     response = send_chat_request(model, prompt_flat, openai_key=openai_key,api_base=api_base, engine=engine)
 
     #response = "Function Call:step1={\n \"arg1\": [\"五粮液\"],\n \"function1\": \"get_stock_code\",\n \"output1\": \"result1\",\n \"arg2\": [\"泸州老窖\"],\n \"function2\": \"get_stock_code\",\n \"output2\": \"result2\"\n},step2={\n \"arg1\": [\"result1\",\"20190101\",\"20220630\",\"daily\"],\n \"function1\": \"get_stock_prices_data\",\n \"output1\": \"result3\",\n \"arg2\": [\"result2\",\"20190101\",\"20220630\",\"daily\"],\n \"function2\": \"get_stock_prices_data\",\n \"output2\": \"result4\"\n},step3={\n \"arg1\": [\"result3\",\"Cumulative_Earnings_Rate\"],\n \"function1\": \"calculate_stock_index\",\n \"output1\": \"result5\",\n \"arg2\": [\"result4\",\"Cumulative_Earnings_Rate\"],\n \"function2\": \"calculate_stock_index\",\n \"output2\": \"result6\"\n}, ###Output:{\n \"五粮液在2019年1月1日到2022年06月30的每日收盘价格时序表格\": \"result5\",\n \"泸州老窖在2019年1月1日到2022年06月30的每日收盘价格时序表格\": \"result6\"\n}"
-    
-    call_steps, _ = response.split('###')
+    if '###' in response:
+        call_steps, _ = response.split('###') 
+    else:
+        call_steps = response  
     pattern = r"(step\d+=)(\{[^}]*\})"
     matches = re.findall(pattern, call_steps)
+ 
     # pattern = r"(step\d+=)(\{[^}]*\})"
     # matches = re.findall(pattern, response)
     result_buffer = {}                # The stored format is as follows: {'result1': (000001.SH, 'Stock code of China Ping An'), 'result2': (df2, 'Stock data of China Ping An from January to June 2021')}.
@@ -295,7 +298,10 @@ def run(model, instruction, add_to_queue=None, send_chat_request_Azure = send_of
 
     # response = send_chat_request("qwen-chat-72b", prompt_flat)
     response = send_chat_request(model, prompt_flat, openai_key=openai_key, api_base=api_base, engine=engine)
-    call_steps, _ = response.split('###')
+    if '###' in response:
+        call_steps, _ = response.split('###') 
+    else:
+        call_steps = response
     pattern = r"(step\d+=)(\{[^}]*\})"
     matches = re.findall(pattern, call_steps)
     for match in matches:
@@ -400,9 +406,6 @@ def send_chat_request(model, prompt, send_chat_request_Azure = send_official_cal
 
 
 instruction = '我想看看中国软件的2019年1月12日到2019年02月12日的收盘价的走势图'
-# '中国过去十年的cpi走势是什么'
-# '我想比较下工商银行和贵州茅台近十年的净资产回报率'
-# '基金经理周海栋名下的所有基金今年的收益率情况'
 if __name__ == '__main__':
     # if using gpt, please set the following parameters
     openai_call = send_official_call #
